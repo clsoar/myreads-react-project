@@ -8,7 +8,8 @@ import './App.css'
 
 class BooksApp extends React.Component {
   state = {
-    books: []
+    books: [],
+    showSearchPage: "true"
   }
 
   componentDidMount() {
@@ -21,7 +22,8 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <SearchPage />) :
+          <SearchPage
+            books = {this.state.books} />) :
           (<HomePage
             books={this.state.books} />)
         }
