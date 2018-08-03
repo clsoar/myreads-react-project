@@ -13,6 +13,7 @@ class HomePage extends Component {
           <div>
             <BookShelf
               books={this.props.books}
+              changeShelf={this.props.changeShelf}
               />
           </div>
         </div>

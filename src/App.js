@@ -1,7 +1,7 @@
 import React from 'react'
+
 import HomePage from './HomePage'
 import SearchPage from './SearchPage'
-
 
 import * as BooksAPI from './BooksAPI'
 import './App.css'
@@ -9,13 +9,23 @@ import './App.css'
 class BooksApp extends React.Component {
   state = {
     books: [],
-    showSearchPage: "true"
+    showSearchPage: false
   }
 
-  componentDidMount() {
+  getBooks = () => {
     BooksAPI.getAll().then((books) => {
       this.setState({ books })
     })
+  }
+
+  componentDidMount() {
+    this.getBooks()
+  }
+
+  changeShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf)
+
+    this.getBooks()
   }
 
   render() {
@@ -23,9 +33,12 @@ class BooksApp extends React.Component {
       <div className="app">
         {this.state.showSearchPage ? (
           <SearchPage
-            books = {this.state.books} />) :
+            books = {this.state.books}
+            changeShelf = {this.changeShelf}
+             />) :
           (<HomePage
-            books={this.state.books} />)
+            books={this.state.books}
+            changeShelf = {this.changeShelf}  />)
         }
       </div>
 
