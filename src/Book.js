@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 
 class Book extends Component {
   render() {
+    let availableThumbnail = this.props.book.imageLinks ?
+    this.props.book.imageLinks.thumbnail : '';
     return (
         <div className="book">
           <div className="book-top">
             <div className="book-cover" style={{ width: 128, height: 193,
-              backgroundImage: `url("${this.props.book.imageLinks.thumbnail}")` }}></div>
+              backgroundImage: `url("${availableThumbnail}")` }}></div>
             <div className="book-shelf-changer">
               <select
                 value={this.props.book.shelf}
