@@ -1,4 +1,5 @@
 import React from 'react'
+import { Route } from 'react-router-dom'
 
 import HomePage from './HomePage'
 import SearchPage from './SearchPage'
@@ -9,8 +10,6 @@ import './App.css'
 class BooksApp extends React.Component {
   state = {
     books: [],
-    showSearchPage: true
-
   }
 
   getBooks = () => {
@@ -32,15 +31,17 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
+        <Route exact path="/" render={() => (
+          <HomePage
+            books={this.state.books}
+            changeShelf = {this.changeShelf}  />
+        )}/>
+        <Route path="/search" render={() => (
           <SearchPage
             books = {this.state.books}
             changeShelf = {this.changeShelf}
-             />) :
-          (<HomePage
-            books={this.state.books}
-            changeShelf = {this.changeShelf}  />)
-        }
+          />
+        )}/>
       </div>
 
   )}
