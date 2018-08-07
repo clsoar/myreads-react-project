@@ -11,7 +11,7 @@ class Book extends Component {
               backgroundImage: `url("${availableThumbnail}")` }}></div>
             <div className="book-shelf-changer">
               <select
-                value={this.props.book.shelf}
+                value={this.props.currentShelf}
                 onChange={(event) => this.props.changeShelf(
                   this.props.book, event.target.value
                 )}

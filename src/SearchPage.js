@@ -23,13 +23,13 @@ class SearchPage extends Component {
         (this.setState({ bookResults: bookResults }))
       })
     }else {
-    this.setState({ bookResults: []})
+      this.setState({ bookResults: []})
     }
   }
 
 
   updateQuery = (query) => {
-    let trimmedQuery = query.replace(/^\s+/, '')
+    let trimmedQuery = query.replace(/^\s+/,'')
     this.setState({ query: trimmedQuery })
     this.updateBookResults(query)
   }
@@ -62,15 +62,27 @@ class SearchPage extends Component {
         <div className="search-books-results">
           <ol className="books-grid">
           {
-            this.state.bookResults.map((bookResults) => (
-              <li key={bookResults.id}>
-                <Book
-                  book={ bookResults }
-                  changeShelf={this.props.changeShelf}
+            this.state.bookResults.map((bookResults) => {
+              let shelf = "none"
 
-                />
-              </li>
-            ))}
+              this.props.books.map((book) => {
+                return(
+                  book.id === bookResults.id ?
+                  shelf = book.shelf : ""
+                )
+
+              })
+
+              return (
+                <li key={bookResults.id}>
+                  <Book
+                    book={ bookResults }
+                    changeShelf={this.props.changeShelf}
+                    currentShelf={ shelf }
+                  />
+                </li>
+            )
+          })}
           </ol>
         </div>
       </div>
