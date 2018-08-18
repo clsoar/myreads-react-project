@@ -23,8 +23,35 @@ class BooksApp extends React.Component {
   }
 
   changeShelf = (book, shelf) => {
-    BooksAPI.update(book, shelf).then(this.getBooks())
+    //update the shelf with the update shelf method from BooksAPI
+    BooksAPI.update(book, shelf).then(handleResponse => {
+      //handle the response
+      //set new shelf
+      book.shelf = shelf
+
+      //update state with changed shelf
+      /*filter to find book that is being moved and then update state
+      with changed book/shelf using concat()
+      */
+      this.setState((state) => ({
+        books: state.books.filter((b) => b.id !== book.id).concat(book)
+      }))
+    })
   }
+
+  updateBooks = (book, shelf) => {
+    this.setState((state) => ({
+      books: state.books.filter((b) => b.id !== book.id)
+    }))
+
+    this.changeShelf(book, shelf)
+
+    this.setState((state) => ({
+      books: state.books.concat([ book ])
+    }))
+  }
+
+
 
   render() {
     return (

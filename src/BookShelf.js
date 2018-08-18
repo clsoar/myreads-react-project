@@ -18,7 +18,6 @@ class BookShelf extends Component {
                     book={ book }
                     changeShelf={this.props.changeShelf}
                     currentShelf="currentlyReading"
-
                   />
                 </li>
               ))}
