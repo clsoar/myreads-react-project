@@ -6,6 +6,10 @@ The project emphasizes using React to build the application and provides an API 
 
 ## Getting Started
 
+Navigate to [https://clsoar.github.io/myreads-react-project/](https://clsoar.github.io/myreads-react-project/) to view the application.
+
+OR
+
 Download or clone the project files and then:
 
 * install all project dependencies with `npm install`
